@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="show"></div>
+    <script>
+        const jsHTTP = new XMLHttpRequest();
+        jsHTTP.open("GET","http://localhost/sesi11/datajson1.php");
+        jsHTTP.send();
+
+        jsHTTP.onload = function(){
+            const dta = JSON.parse(this.responseText);
+            console.log(dta);
+            let tx = "<center><h1>List Data</h1></center>"
+            tx += "<center><table border ='1' cellspacing='0' cellpadding='5'><tr><th>#</th><th>Nama</th><th>Alamat</th><th>Tanggal Lahir</th><th>Jenis Kelamin</th></tr></center>";
+            let no = 1;
+            for(let i=0; i<dta.length;i++){
+                tx += "<tr>"
+                tx += "   <td>"+no+"</td>"
+                tx += "   <td>"+dta[i].nama+"</td>"
+                tx += "   <td>"+dta[i].alamat+"</td>"
+                tx += "   <td>"+dta[i].tanggal_lahir+"</td>"
+                tx += "   <td>"+dta[i].jenis_kelamin+"</td>"
+                tx +="</tr>"
+                no++;
+            }
+            tx += "</table>"
+            document.getElementById("show").innerHTML = tx ;
+            document.getElementById("show").innerHTML = tx ;
+            document.getElementById("show").value = tx ;
+            document.getElementById("show").innerHTML = tx ; 
+        }
+    </script>
+
+</body>
+</html>

@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>membaca data json</title>
+</head>
+<body>
+    Nama            : <span id="txNAMA"></span><br>
+    Alamat          : <span id="txALAMAT"></span><br>
+    Tanggal Lahir   : <input type="date" id="txTGL"><br>
+    Jenis Kelamin   : <span id="txJK"></span>
+    <script>
+        const jsHTTP = new XMLHttpRequest();
+        jsHTTP.open("GET","http://localhost/sesi11/latihanjson.php");
+        jsHTTP.send();
+
+        jsHTTP.onload = function(){
+            const dta = JSON.parse(this.responseText);
+            console.log(dta);
+            document.getElementById("txNAMA").innerHTML = dta.nama ;
+            document.getElementById("txALAMAT").innerHTML = dta.alamat ;
+            document.getElementById("txTGL").value = dta.tanggal_lahir ;
+            document.getElementById("txJK").innerHTML = dta.jenis_kelamin ; 
+        }
+    </script>
+
+</body>
+</html>
